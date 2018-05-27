@@ -1,9 +1,24 @@
 __Author__ = "Will Buxton"
+__editor__ = "Nicholas Beninato"
 
 import subprocess
-from pynput import keyboard
-from pynput.keyboard import Key
 import os
+try:
+    from pynput import keyboard
+    from pynput.keyboard import Key
+except ImportError:
+    while True:
+        print("The package pynput is not installed. Want to install it? ", end='')
+        choice = input().lower()
+        if choice[0] == 'y':
+            os.system("python3 -m pip install pynput")
+            exit()
+        elif choice[0] == 'n':
+            print('Goodbye!')
+            exit()
+        else:
+            print("Please respond with [y/n]")
+
 copy = """osascript -e 'tell application "System Events" to keystroke "c" using {command down}'"""
 paste = """osascript -e 'tell application "System Events" to keystroke "v" using {command down}'"""
 
